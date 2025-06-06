@@ -12,7 +12,7 @@ import (
 
 func main() {
 	// Initialize services
-	postService := services.NewPostService()
+	postService := services.NewPostService("./posts")
 
 	// Initialize handlers
 	postHandler := handlers.NewPostHandler(postService)

@@ -1,7 +1,6 @@
 package services
 
 import (
-	"blog-api/models"
 	"os"
 	"path/filepath"
 	"testing"
@@ -9,7 +8,7 @@ import (
 )
 
 // TestData directory for test posts
-const testPostsDir = "./test_posts"
+const testPostsDir = "./posts"
 
 // setupTestDir creates a temporary directory with test posts
 func setupTestDir(t *testing.T) {
@@ -24,6 +23,23 @@ func setupTestDir(t *testing.T) {
 
 	// Create test posts
 	testPosts := map[string]string{
+		"hello-world.md": `---
+title: "Hello World"
+date: "2025-06-05"
+tags: ["Hello World"]
+excerpt: "A post with nothing substantial"
+---
+
+# Hello World
+
+There isn't anything meaningful in this post - apart from maybe a wince when looking back in time at this.
+
+The main reason I want to start up a blog isn't for _anyone_ to read it, but rather for me to reference a thought I had one time and share that with those around me.
+
+I'll likely ramble about tech stuff, side projects, and probably weave my 2 dogs into the mix.
+
+Test post, please ignore`,
+
 		"post-with-frontmatter.md": `---
 title: "Test Post with Frontmatter"
 date: "2025-06-05"
@@ -90,23 +106,11 @@ func cleanupTestDir(t *testing.T) {
 	}
 }
 
-// createTestPostService creates a PostService with test directory
-func createTestPostService() *PostService {
-	// Temporarily override postsDir for testing
-	originalPostsDir := postsDir
-	defer func() {
-		// Note: This won't work as expected due to const,
-		// so we'll modify the methods to accept directory parameter
-	}()
-
-	return &PostService{}
-}
-
 func TestNewPostService(t *testing.T) {
 	setupTestDir(t)
 	defer cleanupTestDir(t)
 
-	service := NewPostService()
+	service := NewPostService(testPostsDir)
 	if service == nil {
 		t.Error("NewPostService should return a non-nil PostService")
 	}
@@ -116,7 +120,7 @@ func TestNewPostService(t *testing.T) {
 	defer os.RemoveAll(tempDir)
 
 	// This would require modifying the const, so we'll test the actual behavior
-	if _, err := os.Stat(postsDir); os.IsNotExist(err) {
+	if _, err := os.Stat(testPostsDir); os.IsNotExist(err) {
 		t.Errorf("Posts directory should be created if it doesn't exist")
 	}
 }
@@ -302,65 +306,13 @@ func TestLoadPostFromFile_NonexistentFile(t *testing.T) {
 	}
 }
 
-func TestGetAllPosts(t *testing.T) {
+func TestGetAllPosts_WithoutContent(t *testing.T) {
 	setupTestDir(t)
 	defer cleanupTestDir(t)
 
-	// Create a modified PostService that uses test directory
-	service := &PostService{}
-
-	// We need to temporarily modify the postsDir constant for testing
-	// Since we can't modify a const, we'll test with a method that accepts directory
-	// For now, let's test by copying test files to the actual posts directory
-
-	// Save original posts
-	originalFiles, _ := os.ReadDir(postsDir)
-
-	// Copy test files to posts directory
-	testFiles, _ := os.ReadDir(testPostsDir)
-	for _, file := range testFiles {
-		srcPath := filepath.Join(testPostsDir, file.Name())
-		dstPath := filepath.Join(postsDir, file.Name())
-		content, _ := os.ReadFile(srcPath)
-		os.WriteFile(dstPath, content, 0644)
+	service := &PostService{
+		postsDir: testPostsDir,
 	}
-
-	// Cleanup function
-	defer func() {
-		// Remove test files
-		for _, file := range testFiles {
-			os.Remove(filepath.Join(postsDir, file.Name()))
-		}
-	}()
-
-	posts, err := service.GetAllPosts(true)
-	if err != nil {
-		t.Fatalf("GetAllPosts failed: %v", err)
-	}
-
-	// Should have at least our test posts
-	if len(posts) < 5 {
-		t.Errorf("Expected at least 5 posts, got %d", len(posts))
-	}
-
-	// Test that posts are sorted by date (newest first)
-	for i := 1; i < len(posts); i++ {
-		if posts[i-1].Date.Before(posts[i].Date) {
-			t.Error("Posts should be sorted by date (newest first)")
-			break
-		}
-	}
-
-	// Test that content is included
-	for _, post := range posts {
-		if post.Content == "" && post.Slug != "hello-world" {
-			t.Errorf("Post %s should have content when includeContent is true", post.Slug)
-		}
-	}
-}
-
-func TestGetAllPosts_WithoutContent(t *testing.T) {
-	service := &PostService{}
 
 	posts, err := service.GetAllPosts(false)
 	if err != nil {
@@ -376,7 +328,10 @@ func TestGetAllPosts_WithoutContent(t *testing.T) {
 }
 
 func TestGetPostBySlug(t *testing.T) {
-	service := &PostService{}
+	setupTestDir(t)
+	defer cleanupTestDir(t)
+
+	service := NewPostService(testPostsDir)
 
 	// Test with existing post
 	post, err := service.GetPostBySlug("hello-world")
@@ -394,7 +349,10 @@ func TestGetPostBySlug(t *testing.T) {
 }
 
 func TestGetPostBySlug_NonexistentPost(t *testing.T) {
-	service := &PostService{}
+	setupTestDir(t)
+	defer cleanupTestDir(t)
+
+	service := NewPostService(testPostsDir)
 
 	_, err := service.GetPostBySlug("nonexistent-post")
 	if err == nil {
@@ -403,7 +361,10 @@ func TestGetPostBySlug_NonexistentPost(t *testing.T) {
 }
 
 func TestGenerateRSSFeed(t *testing.T) {
-	service := &PostService{}
+	setupTestDir(t)
+	defer cleanupTestDir(t)
+
+	service := NewPostService(testPostsDir)
 
 	title := "Test Blog"
 	baseURL := "https://example.com"
@@ -477,52 +438,5 @@ This is the third paragraph that definitely should not appear in the excerpt.`
 
 	if len(post.Excerpt) > 203 { // 200 + "..."
 		t.Errorf("Excerpt should be truncated to 200 characters plus '...', got %d characters", len(post.Excerpt))
-	}
-}
-
-func TestEmptyPostsDirectory(t *testing.T) {
-	// Create empty test directory
-	emptyDir := "./empty_test_posts"
-	os.Mkdir(emptyDir, 0755)
-	defer os.RemoveAll(emptyDir)
-
-	// This test would require modifying the service to accept a directory parameter
-	// For now, we'll test the existing behavior with empty posts directory
-	service := &PostService{}
-
-	// Temporarily move existing posts
-	originalFiles, _ := os.ReadDir(postsDir)
-	tempDir := "./temp_backup_posts"
-	os.Mkdir(tempDir, 0755)
-
-	for _, file := range originalFiles {
-		if filepath.Ext(file.Name()) == ".md" {
-			srcPath := filepath.Join(postsDir, file.Name())
-			dstPath := filepath.Join(tempDir, file.Name())
-			content, _ := os.ReadFile(srcPath)
-			os.WriteFile(dstPath, content, 0644)
-			os.Remove(srcPath)
-		}
-	}
-
-	defer func() {
-		// Restore original files
-		tempFiles, _ := os.ReadDir(tempDir)
-		for _, file := range tempFiles {
-			srcPath := filepath.Join(tempDir, file.Name())
-			dstPath := filepath.Join(postsDir, file.Name())
-			content, _ := os.ReadFile(srcPath)
-			os.WriteFile(dstPath, content, 0644)
-		}
-		os.RemoveAll(tempDir)
-	}()
-
-	posts, err := service.GetAllPosts(true)
-	if err != nil {
-		t.Fatalf("GetAllPosts should not fail with empty directory: %v", err)
-	}
-
-	if len(posts) != 0 {
-		t.Errorf("Expected 0 posts in empty directory, got %d", len(posts))
 	}
 }

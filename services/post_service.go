@@ -13,32 +13,33 @@ import (
 	"blog-api/models"
 )
 
-const postsDir = "./posts"
-
 // PostService handles blog post operations
-type PostService struct{}
+type PostService struct {
+	postsDir string // Directory where blog posts are stored
+}
 
 // NewPostService creates a new PostService instance
-func NewPostService() *PostService {
-	// Create posts directory if it doesn't exist
+func NewPostService(postsDir string) *PostService {
 	if _, err := os.Stat(postsDir); os.IsNotExist(err) {
 		os.Mkdir(postsDir, 0755)
 	}
-	return &PostService{}
+	return &PostService{
+		postsDir: postsDir,
+	}
 }
 
 // GetAllPosts loads all blog posts from the posts directory
 func (ps *PostService) GetAllPosts(includeContent bool) ([]models.BlogPost, error) {
 	var posts []models.BlogPost
 
-	files, err := ioutil.ReadDir(postsDir)
+	files, err := ioutil.ReadDir(ps.postsDir)
 	if err != nil {
 		return posts, err
 	}
 
 	for _, file := range files {
 		if filepath.Ext(file.Name()) == ".md" {
-			post, err := ps.loadPostFromFile(filepath.Join(postsDir, file.Name()), includeContent)
+			post, err := ps.loadPostFromFile(filepath.Join(ps.postsDir, file.Name()), includeContent)
 			if err != nil {
 				fmt.Printf("Error loading post %s: %v\n", file.Name(), err)
 				continue
@@ -58,16 +59,16 @@ func (ps *PostService) GetAllPosts(includeContent bool) ([]models.BlogPost, erro
 // GetPostBySlug loads a specific post by its slug
 func (ps *PostService) GetPostBySlug(slug string) (models.BlogPost, error) {
 	filename := slug + ".md"
-	filepath := filepath.Join(postsDir, filename)
+	filePath := filepath.Join(ps.postsDir, filename)
 
-	return ps.loadPostFromFile(filepath, true)
+	return ps.loadPostFromFile(filePath, true)
 }
 
 // loadPostFromFile loads a blog post from a markdown file
-func (ps *PostService) loadPostFromFile(filepath string, includeContent bool) (models.BlogPost, error) {
+func (ps *PostService) loadPostFromFile(filePath string, includeContent bool) (models.BlogPost, error) {
 	var post models.BlogPost
 
-	content, err := ioutil.ReadFile(filepath)
+	content, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		return post, err
 	}
@@ -90,7 +91,7 @@ func (ps *PostService) loadPostFromFile(filepath string, includeContent bool) (m
 	}
 
 	// Parse frontmatter
-	post.Slug = strings.TrimSuffix(filepath.Base(filepath), ".md")
+	post.Slug = strings.TrimSuffix(filepath.Base(filePath), ".md")
 
 	if frontmatter != "" {
 		lines := strings.Split(frontmatter, "\n")
@@ -161,7 +162,7 @@ func (ps *PostService) loadPostFromFile(filepath string, includeContent bool) (m
 
 	if post.Date.IsZero() {
 		// Use file modification time as fallback
-		if info, err := os.Stat(filepath); err == nil {
+		if info, err := os.Stat(filePath); err == nil {
 			post.Date = info.ModTime()
 			post.PublishDate = info.ModTime().Format("2006-01-02")
 		}

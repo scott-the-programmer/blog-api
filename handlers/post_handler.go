@@ -27,7 +27,6 @@ func (ph *PostHandler) GetAllPosts(c *gin.Context) {
 		return
 	}
 
-	// Convert to metadata only
 	var postMetas []models.BlogPostMeta
 	for _, post := range posts {
 		postMetas = append(postMetas, models.BlogPostMeta{
@@ -61,9 +60,8 @@ func (ph *PostHandler) GetPostBySlug(c *gin.Context) {
 
 // GetRSSFeed returns an RSS feed of blog posts
 func (ph *PostHandler) GetRSSFeed(c *gin.Context) {
-	// You can make these configurable via environment variables or config file
 	title := "My Blog"
-	baseURL := "http://localhost:8080" // Change this to your actual domain
+	baseURL := "http://localhost:8080"
 	description := "Latest posts from my blog"
 
 	feed, err := ph.postService.GenerateRSSFeed(title, baseURL, description)

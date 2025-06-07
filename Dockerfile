@@ -13,7 +13,7 @@ FROM alpine:latest
 
 RUN apk --no-cache add ca-certificates tzdata
 
-RUN addgroup -g 1001 -S appgroup &&
+RUN addgroup -g 1001 -S appgroup && \
     adduser -u 1001 -S appuser -G appgroup
 
 WORKDIR /app

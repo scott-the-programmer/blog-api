@@ -1,5 +1,5 @@
 
-.PHONY: tidy build clean test run fmt vet lint help
+.PHONY: tidy build clean test test-e2e test-all test-coverage test-coverage-all run fmt vet lint help
 
 # Default target
 all: tidy fmt vet test build
@@ -20,14 +20,30 @@ clean:
 	rm -rf bin/
 	go clean
 
-# Run tests
+# Run unit tests (exclude e2e package)
 test:
-	@echo "Running tests..."
+	@echo "Running unit tests..."
+	go test -v $(shell go list ./... | grep -v /e2e)
+
+# Run e2e tests
+test-e2e:
+	@echo "Running e2e tests..."
+	go test -v ./e2e/...
+
+# Run all tests (unit + e2e)
+test-all:
+	@echo "Running all tests..."
 	go test -v ./...
 
-# Run tests with coverage
+# Run unit tests with coverage
 test-coverage:
-	@echo "Running tests with coverage..."
+	@echo "Running unit tests with coverage..."
+	go test -v -coverprofile=coverage.out $(shell go list ./... | grep -v /e2e)
+	go tool cover -html=coverage.out -o coverage.html
+
+# Run all tests with coverage
+test-coverage-all:
+	@echo "Running all tests with coverage..."
 	go test -v -coverprofile=coverage.out ./...
 	go tool cover -html=coverage.out -o coverage.html
 
@@ -77,8 +93,11 @@ help:
 	@echo "  tidy         - Tidy go modules"
 	@echo "  build        - Build the application"
 	@echo "  clean        - Clean build artifacts"
-	@echo "  test         - Run tests"
-	@echo "  test-coverage- Run tests with coverage report"
+	@echo "  test         - Run unit tests (excludes e2e)"
+	@echo "  test-e2e     - Run e2e tests only"
+	@echo "  test-all     - Run all tests (unit + e2e)"
+	@echo "  test-coverage- Run unit tests with coverage report"
+	@echo "  test-coverage-all - Run all tests with coverage report"
 	@echo "  fmt          - Format code"
 	@echo "  vet          - Vet code"
 	@echo "  run          - Run the application"

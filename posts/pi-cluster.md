@@ -19,7 +19,7 @@ Well, none other than [term.nz](https://term.nz), [scott.murray.kiwi](https://sc
 
 As much as I love doxxing my IP, Cloudflare Tunnel has been a game changer. All the public containers run with a [sidecar that tunnels through Cloudflare/Argo Tunnel](https://github.com/scott-the-programmer/meshed/blob/main/stacks/applications/apps/blog-api.go). The nice bit is that this keeps my IP private (_not that I own a static IP anyway_) but is also flexible enough that if I were to switch hosting, my tunnel config can stay exactly the same.
 
-# You may be asking, how are you updating your apps?
+# How are you updating your apps?
 
 That's where [keel.sh](https://keel.sh) comes in! I've simply added the [polling annotations](https://keel.sh/docs/#deployment-polling-example) to my deployments, and as soon as an image is updated in the respective repository, it gets refreshed via the same mechanism that was used to pull the containers in the first place. Obviously, most of my apps are open-source, but for the few that I'd rather keep private, Keel is seamless enough to work with those without any extra config.
 

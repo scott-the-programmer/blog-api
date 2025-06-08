@@ -83,7 +83,7 @@ func BlogPostToRSSItem(post BlogPost, baseURL string) RSSItem {
 		Title:       post.Title,
 		Link:        link,
 		Description: description,
-		PubDate:     post.Date.Format(time.RFC1123Z),
+		PubDate:     time.Time(post.Date).Format(time.RFC1123Z),
 		GUID:        link,
 	}
 }

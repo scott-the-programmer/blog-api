@@ -1,6 +1,7 @@
 package services
 
 import (
+	"blog-api/models"
 	"os"
 	"path/filepath"
 	"testing"
@@ -147,7 +148,7 @@ func TestLoadPostFromFile_WithFrontmatter(t *testing.T) {
 	}
 
 	expectedDate, _ := time.Parse("2006-01-02", "2025-06-05")
-	if !post.Date.Equal(expectedDate) {
+	if !post.Date.Equal(models.DateOnly(expectedDate)) {
 		t.Errorf("Expected date %v, got %v", expectedDate, post.Date)
 	}
 
@@ -269,8 +270,9 @@ func TestLoadPostFromFile_RFC3339Date(t *testing.T) {
 	}
 
 	expectedDate, _ := time.Parse(time.RFC3339, "2025-06-03T10:30:00Z")
-	if !post.Date.Equal(expectedDate) {
-		t.Errorf("Expected date %v, got %v", expectedDate, post.Date)
+	expectedDateOnly := models.DateOnly(expectedDate)
+	if !post.Date.Equal(expectedDateOnly) {
+		t.Errorf("Expected date %v, got %v", expectedDateOnly, post.Date)
 	}
 
 	if post.PublishDate != "2025-06-03" {

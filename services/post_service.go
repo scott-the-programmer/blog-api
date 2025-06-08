@@ -49,7 +49,7 @@ func (ps *PostService) GetAllPosts(includeContent bool) ([]models.BlogPost, erro
 	}
 
 	sort.Slice(posts, func(i, j int) bool {
-		return posts[i].Date.After(posts[j].Date)
+		return time.Time(posts[i].Date).After(time.Time(posts[j].Date))
 	})
 
 	return posts, nil
@@ -115,10 +115,10 @@ func (ps *PostService) loadPostFromFile(filePath string, includeContent bool) (m
 				post.Title = value
 			case "date":
 				if date, err := time.Parse("2006-01-02", value); err == nil {
-					post.Date = date
+					post.Date = models.DateOnly(date)
 					post.PublishDate = value
 				} else if date, err := time.Parse(time.RFC3339, value); err == nil {
-					post.Date = date
+					post.Date = models.DateOnly(date)
 					post.PublishDate = date.Format("2006-01-02")
 				}
 			case "tags":
@@ -153,7 +153,7 @@ func (ps *PostService) loadPostFromFile(filePath string, includeContent bool) (m
 
 	if post.Date.IsZero() {
 		if info, err := os.Stat(filePath); err == nil {
-			post.Date = info.ModTime()
+			post.Date = models.DateOnly(info.ModTime())
 			post.PublishDate = info.ModTime().Format("2006-01-02")
 		}
 	}

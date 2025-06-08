@@ -48,6 +48,12 @@ func (ph *PostHandler) GetAllPosts(c *gin.Context) {
 // GetPostBySlug returns a specific blog post by its slug
 func (ph *PostHandler) GetPostBySlug(c *gin.Context) {
 	slug := c.Param("slug")
+	
+	// Check if slug is empty (e.g., from /posts/ request)
+	if slug == "" {
+		c.JSON(404, gin.H{"error": "Post not found: empty slug"})
+		return
+	}
 
 	post, err := ph.postService.GetPostBySlug(slug)
 	if err != nil {

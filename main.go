@@ -40,6 +40,9 @@ func main() {
 	r.GET("/health/live", healthHandler.LivenessCheck)
 
 	r.GET("/posts", postHandler.GetAllPosts)
+	r.GET("/posts/", func(c *gin.Context) {
+		c.JSON(404, gin.H{"error": "Post not found"})
+	})
 	r.GET("/posts/:slug", postHandler.GetPostBySlug)
 	r.GET("/rss", postHandler.GetRSSFeed)
 

@@ -11,7 +11,7 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
-	_ "blog-api/docs"
+	docs "blog-api/docs"
 )
 
 // @title Blog API
@@ -34,6 +34,8 @@ func main() {
 
 	postHandler := handlers.NewPostHandler(postService)
 	healthHandler := handlers.NewHealthHandler()
+
+	docs.SwaggerInfo.Schemes = []string{"https"}
 
 	r := gin.Default()
 

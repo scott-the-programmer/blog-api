@@ -1,8 +1,8 @@
 ---
 title: "Hello World"
 date: "2025-06-05"
-tags: ["Hello World"]
-excerpt: "A post with nothing substantial"
+tags: ["hi"]
+excerpt: "Test post; please ignore"
 ---
 
 There isn't anything meaningful in this post - apart from maybe a wince when looking back in time at this.

@@ -11,7 +11,7 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 
-	docs "blog-api/docs"
+	_ "blog-api/docs"
 )
 
 // @title Blog API
@@ -40,7 +40,6 @@ func main() {
 	r.Use(middleware.CORS())
 
 	// Swagger endpoint
-	docs.SwaggerInfo.BasePath = "/api/v1"
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// @Summary API Information

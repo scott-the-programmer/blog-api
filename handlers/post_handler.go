@@ -91,8 +91,8 @@ func (ph *PostHandler) GetPostBySlug(c *gin.Context) {
 // @Failure 500 {object} models.ErrorResponse
 // @Router /rss [get]
 func (ph *PostHandler) GetRSSFeed(c *gin.Context) {
-	title := "My Blog"
-	baseURL := "http://localhost:8080"
+	title := "Scott Murray's Blog"
+	baseURL := "https://blog-api.murray.kiwi"
 	description := "Latest posts from my blog"
 
 	feed, err := ph.postService.GenerateRSSFeed(title, baseURL, description)

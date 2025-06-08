@@ -20,6 +20,14 @@ func NewPostHandler(postService *services.PostService) *PostHandler {
 }
 
 // GetAllPosts returns a list of all blog posts (without full content)
+// @Summary Get all blog posts
+// @Description Get a list of all blog posts with metadata only (no content)
+// @Tags posts
+// @Accept json
+// @Produce json
+// @Success 200 {object} models.PostsResponse
+// @Failure 500 {object} models.ErrorResponse
+// @Router /posts [get]
 func (ph *PostHandler) GetAllPosts(c *gin.Context) {
 	posts, err := ph.postService.GetAllPosts(false)
 	if err != nil {
@@ -46,6 +54,15 @@ func (ph *PostHandler) GetAllPosts(c *gin.Context) {
 }
 
 // GetPostBySlug returns a specific blog post by its slug
+// @Summary Get a blog post by slug
+// @Description Get a specific blog post by its slug identifier
+// @Tags posts
+// @Accept json
+// @Produce json
+// @Param slug path string true "Post slug"
+// @Success 200 {object} models.BlogPost
+// @Failure 404 {object} models.ErrorResponse
+// @Router /posts/{slug} [get]
 func (ph *PostHandler) GetPostBySlug(c *gin.Context) {
 	slug := c.Param("slug")
 	
@@ -65,6 +82,14 @@ func (ph *PostHandler) GetPostBySlug(c *gin.Context) {
 }
 
 // GetRSSFeed returns an RSS feed of blog posts
+// @Summary Get RSS feed
+// @Description Get an RSS feed of all blog posts
+// @Tags posts
+// @Accept json
+// @Produce application/rss+xml
+// @Success 200 {string} string "RSS XML feed"
+// @Failure 500 {object} models.ErrorResponse
+// @Router /rss [get]
 func (ph *PostHandler) GetRSSFeed(c *gin.Context) {
 	title := "My Blog"
 	baseURL := "http://localhost:8080"

@@ -1,0 +1,232 @@
+basePath: /
+definitions:
+  handlers.HealthResponse:
+    properties:
+      service:
+        example: blog-api
+        type: string
+      status:
+        example: healthy
+        type: string
+      timestamp:
+        example: "2024-01-01T12:00:00Z"
+        type: string
+      uptime:
+        example: 1h23m45s
+        type: string
+      version:
+        example: 1.0.0
+        type: string
+    type: object
+  handlers.LivenessResponse:
+    properties:
+      status:
+        example: alive
+        type: string
+      timestamp:
+        example: "2024-01-01T12:00:00Z"
+        type: string
+    type: object
+  handlers.ReadinessResponse:
+    properties:
+      status:
+        example: ready
+        type: string
+      timestamp:
+        example: "2024-01-01T12:00:00Z"
+        type: string
+    type: object
+  models.BlogPost:
+    properties:
+      content:
+        example: This is the full content of the blog post...
+        type: string
+      date:
+        example: "2024-01-01"
+        type: string
+      excerpt:
+        example: This is a short excerpt...
+        type: string
+      publish_date:
+        example: "2024-01-01T12:00:00Z"
+        type: string
+      slug:
+        example: hello-world
+        type: string
+      tags:
+        example:
+        - go
+        - api
+        - blog
+        items:
+          type: string
+        type: array
+      title:
+        example: Hello World
+        type: string
+    type: object
+  models.BlogPostMeta:
+    properties:
+      date:
+        example: "2024-01-01"
+        type: string
+      excerpt:
+        example: This is a short excerpt...
+        type: string
+      publish_date:
+        example: "2024-01-01T12:00:00Z"
+        type: string
+      slug:
+        example: hello-world
+        type: string
+      tags:
+        example:
+        - go
+        - api
+        - blog
+        items:
+          type: string
+        type: array
+      title:
+        example: Hello World
+        type: string
+    type: object
+  models.ErrorResponse:
+    properties:
+      error:
+        example: Something went wrong
+        type: string
+    type: object
+  models.PostsResponse:
+    properties:
+      count:
+        example: 5
+        type: integer
+      posts:
+        items:
+          $ref: '#/definitions/models.BlogPostMeta'
+        type: array
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: A simple blog API built with Go and Gin
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  termsOfService: http://swagger.io/terms/
+  title: Blog API
+  version: "1.0"
+paths:
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: Get the health status of the API including uptime and version
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.HealthResponse'
+      summary: Health check
+      tags:
+      - health
+  /health/live:
+    get:
+      consumes:
+      - application/json
+      description: Check if the API is alive and responding
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.LivenessResponse'
+      summary: Liveness check
+      tags:
+      - health
+  /health/ready:
+    get:
+      consumes:
+      - application/json
+      description: Check if the API is ready to serve requests
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.ReadinessResponse'
+      summary: Readiness check
+      tags:
+      - health
+  /posts:
+    get:
+      consumes:
+      - application/json
+      description: Get a list of all blog posts with metadata only (no content)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.PostsResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Get all blog posts
+      tags:
+      - posts
+  /posts/{slug}:
+    get:
+      consumes:
+      - application/json
+      description: Get a specific blog post by its slug identifier
+      parameters:
+      - description: Post slug
+        in: path
+        name: slug
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.BlogPost'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Get a blog post by slug
+      tags:
+      - posts
+  /rss:
+    get:
+      consumes:
+      - application/json
+      description: Get an RSS feed of all blog posts
+      produces:
+      - application/rss+xml
+      responses:
+        "200":
+          description: RSS XML feed
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.ErrorResponse'
+      summary: Get RSS feed
+      tags:
+      - posts
+swagger: "2.0"

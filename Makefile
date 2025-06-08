@@ -1,5 +1,5 @@
 
-.PHONY: tidy build clean test test-e2e test-all test-coverage test-coverage-all run fmt vet lint help
+.PHONY: tidy build clean test test-e2e test-all test-coverage test-coverage-all run fmt vet lint swagger help
 
 # Default target
 all: tidy fmt vet test build
@@ -76,6 +76,17 @@ lint:
 		echo "golangci-lint not found. Install with: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.54.2"; \
 	fi
 
+# Generate Swagger documentation
+swagger:
+	@echo "Generating Swagger documentation..."
+	@if command -v swag >/dev/null 2>&1; then \
+		swag init; \
+	else \
+		echo "swag not found. Installing..."; \
+		go install github.com/swaggo/swag/cmd/swag@latest; \
+		$(shell go env GOPATH)/bin/swag init; \
+	fi
+
 # Watch for changes and rebuild (requires air)
 watch:
 	@echo "Starting file watcher..."
@@ -103,5 +114,6 @@ help:
 	@echo "  run          - Run the application"
 	@echo "  deps         - Install dependencies"
 	@echo "  lint         - Run linter (requires golangci-lint)"
+	@echo "  swagger      - Generate Swagger documentation"
 	@echo "  watch        - Watch for changes and rebuild (requires air)"
 	@echo "  help         - Show this help message"

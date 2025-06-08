@@ -8,7 +8,26 @@ import (
 	"blog-api/services"
 
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
+
+	docs "blog-api/docs"
 )
+
+// @title Blog API
+// @version 1.0
+// @description A simple blog API built with Go and Gin
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name API Support
+// @contact.url http://www.swagger.io/support
+// @contact.email support@swagger.io
+
+// @license.name MIT
+// @license.url https://opensource.org/licenses/MIT
+
+// @host localhost:8080
+// @BasePath /
 
 func main() {
 	postService := services.NewPostService("./posts")
@@ -20,6 +39,17 @@ func main() {
 
 	r.Use(middleware.CORS())
 
+	// Swagger endpoint
+	docs.SwaggerInfo.BasePath = "/api/v1"
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	// @Summary API Information
+	// @Description Get basic information about the Blog API and available endpoints
+	// @Tags general
+	// @Accept json
+	// @Produce json
+	// @Success 200 {object} map[string]interface{} "message and endpoints list"
+	// @Router / [get]
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "Blog API is running!",
@@ -30,6 +60,7 @@ func main() {
 				"GET /health":      "Health check",
 				"GET /health/ready": "Readiness check",
 				"GET /health/live":  "Liveness check",
+				"GET /swagger/":     "API documentation",
 			},
 		})
 	})
@@ -55,6 +86,7 @@ func main() {
 	fmt.Println("  GET /posts   - List all posts")
 	fmt.Println("  GET /posts/:slug - Get specific post")
 	fmt.Println("  GET /rss     - RSS feed")
+	fmt.Println("  GET /swagger/ - API documentation")
 
 	r.Run(":8080")
 }

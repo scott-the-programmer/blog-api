@@ -26,7 +26,7 @@ import (
 // @license.name MIT
 // @license.url https://opensource.org/licenses/MIT
 
-// @host https://blog-api.murray.kiwi
+// @host blog-api.murray.kiwi
 // @BasePath /
 
 func main() {

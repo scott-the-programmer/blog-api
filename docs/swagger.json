@@ -15,7 +15,7 @@
         },
         "version": "1.0"
     },
-    "host": "https://blog-api.murray.kiwi",
+    "host": "blog-api.murray.kiwi",
     "basePath": "/",
     "paths": {
         "/health": {

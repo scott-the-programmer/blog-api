@@ -21,7 +21,7 @@ This is not a failure of the engineers, it's an expected outcome of Shape Up. Sh
 
 Shape Up's betting approach requires a fundamental shift in how we think about commitments. **Every item in a cycle must be halt-able without catastrophic consequences.** This means that if an appetite is exceeded, you must be prepared to stop work, re-evaluate the complexity, and potentially re-bet with new knowledge.
 
-The discipline required to halt work and re-bet is often underestimated. It requires strong leadership support, a culture that views stopping as a sign of good judgment rather than failure, and crucially, **the freedom to fail**. Teams need to be comfortable with the idea that sometimes the best decision is to step back and reshape the problem—or even abandon it entirely if the complexity doesn't justify the value. This freedom to fail is essential for Shape Up to work.
+The discipline required to halt work and re-bet is often underestimated. It requires strong leadership support, a culture that views stopping as a sign of good judgment rather than failure, and crucially, **the freedom to fail**. Teams need to be comfortable with the idea that sometimes the best decision is to step back and reshape the problem, or even abandon it entirely if the complexity doesn't justify the value. This freedom to fail is essential for Shape Up to work.
 
 ## The Betting Table Bias
 

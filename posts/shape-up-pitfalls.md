@@ -13,9 +13,9 @@ First and foremost, I am not downplaying [Shape Up](https://basecamp.com/shapeup
 
 The most challenging aspect of Shape Up is accepting that **cool-downs might be lost productivity**. The Shape Up explicitly encourages engineers to use cool-downs for innovation, tech debt reduction, and exploration. While this sounds fantastic in theory, the reality is messier.
 
-Engineers will genuinely try their best during these periods — they'll experiment with new technologies, refactor legacy code, and explore creative solutions. But sometimes these efforts don't pan out. That shiny new framework doesn't solve the problem you thought it would. The refactoring uncovers more complexity than expected. The innovative feature prototype reveals fundamental flaws.
+Engineers will genuinely try their best during these periods. They'll experiment with new technologies, refactor legacy code, and explore creative solutions. But sometimes these efforts don't pan out. That shiny new framework doesn't solve the problem you thought it would. The refactoring uncovers more complexity than expected. The innovative feature prototype reveals fundamental flaws.
 
-This is not a failure of the engineers — it's an expected outcome of Shape Up. Shape Up requires leadership and stakeholders to be genuinely okay with this apparent "lost productivity." If you're measuring success purely by feature delivery velocity, cool-downs will feel wasteful. The value they provide is often intangible and long-term, making them difficult to justify in the short term.
+This is not a failure of the engineers, it's an expected outcome of Shape Up. Shape Up requires leadership and stakeholders to be genuinely okay with this apparent "lost productivity." If you're measuring success purely by feature delivery velocity, cool-downs will feel wasteful. The value they provide is often intangible and long-term, making them difficult to justify in the short term.
 
 ## Everything Must Be Halt-able
 

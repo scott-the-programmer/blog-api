@@ -41,7 +41,7 @@ Bug X with appetite Y that needs to be done before Z (where Z is in a few days/w
 
 ## Final Thoughts
 
-Honestly, as much as I love providing answers, I don't have a definitive answer. Perhaps there really isn't one. It's just a list of compromises you're willing to make compared to whatever other software development methodology you're considering.
+Honestly, as much as I love providing answers, I don't have a definitive answer. Perhaps there really isn't one. It's just a list of compromises you're willing to make compared to _insert other software development methodology here_.
 
 I do have _some_ fleeting thoughts that may be beneficial for anyone interested in Shape Up:
 

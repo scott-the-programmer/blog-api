@@ -15,7 +15,7 @@ The most challenging aspect of Shape Up is accepting that **cool-downs might be 
 
 Engineers will genuinely try their best during these periods — they'll experiment with new technologies, refactor legacy code, and explore creative solutions. But sometimes these efforts don't pan out. That shiny new framework doesn't solve the problem you thought it would. The refactoring uncovers more complexity than expected. The innovative feature prototype reveals fundamental flaws.
 
-This is not a failure of the engineers — it's an expected outcome of the methodology. Shape Up requires leadership and stakeholders to be genuinely okay with this apparent "lost productivity." If you're measuring success purely by feature delivery velocity, cool-downs will feel wasteful. The value they provide is often intangible and long-term, making them difficult to justify in the short term.
+This is not a failure of the engineers — it's an expected outcome of Shape Up. Shape Up requires leadership and stakeholders to be genuinely okay with this apparent "lost productivity." If you're measuring success purely by feature delivery velocity, cool-downs will feel wasteful. The value they provide is often intangible and long-term, making them difficult to justify in the short term.
 
 ## Everything Must Be Halt-able
 
@@ -35,7 +35,7 @@ Conversely, if support staff have a strong voice at the betting table, you might
 
 Deadlines are great! Oh wait... you said due tomorrow?
 
-Our last pitfall is that **items with deadlines or non-negotiable work don't fit the methodology.** Incidents need immediate attention. Critical bugs can't wait for the next betting cycle. Urgent customer requests often have immovable deadlines tied to business commitments.
+Our last pitfall is that **items with deadlines or non-negotiable work don't into Shape Up.** Incidents need immediate attention. Critical bugs can't wait for the next betting cycle. Urgent customer requests often have immovable deadlines tied to business commitments.
 
 Bug X with appetite Y that needs to be done before Z (where Z is in a few days/weeks) doesn't really make sense in the context of Shape Up. Sure, this type of work exists, and must be worked on, but would a consumed appetite really change anything? If it wouldn't, then it is simply unbounded work with high priority that will risk the teams delivery... and that's OK!
 
@@ -47,7 +47,7 @@ I do have _some_ fleeting thoughts that may be beneficial for anyone interested 
 
 - **Let Senior Engineers drive cool-down work.** This will decrease the potential wastage in efforts that don't have any legs to begin with. Yes, CQRS might work well but currently our `/do/the/thing` endpoint has slowed down by 50% for no apparent reason!
 - **Set expectations of quality.** ~~Engineers~~ People, often have the best intentions in mind. Juggling quality, speed, and delivery is complex. Engineers have to feel OK with cutting corners at times, knowing that it will be paid back at some point. Conversely, some definition of quality must be set. The default mindset should be "in X language/framework/library, it is recommended to do it Y way." Unless there truly is a constraint on quality, cutting corners should be a last resort.
-- **Testing must be included in the appetite.** However this may manifest in your team structure, if the feature has been written and it *probably works*, then it is simply not done and should consume appetite until it has been verified. It should be OK to say "we've paused this as too many unforeseen issues cropped up."
+- **Testing must be included in the appetite.** However this may manifest in your team structure, if the feature has been written and it _probably works_, then it is simply not done and should consume appetite until it has been verified. It should be OK to say "we've paused this as too many unforeseen issues cropped up."
 - **Your developer and testing workflow should be unified.** I don't have an answer on how to do this, but appetite fundamentally does not work if these two components aren't in unison. If your org only has Software Engineers and you validate through metrics and canaries, and a barriage of automated tests, then this should be quick and seamless. Alternatively, if you have a traditional Software Engineer/QA Engineer setup, then the interactions should almost no overhead in communication
 
 Anyway, this is the part where I put final thoughts but I don't really have any right now. If you've read the entire thing, thanks. If you're just skipping to the end, then that's cool too. Right now I'm getting back into some of the old bands I used to listen to as a teenager, like Slipknot and My Chemical Romance. Where is this paragraph going? Who knows

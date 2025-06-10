@@ -41,7 +41,7 @@ Perhaps the most significant limitation of Shape Up is that **items with deadlin
 
 This creates a challenging reality: some engineers may not fit into the cycle flow. You might need dedicated teams or individuals to handle these interruptions, which can create a two-tier system within your engineering organization. The engineers handling urgent work might feel excluded from the more strategic, shaped work, while the cycle teams might feel disconnected from immediate customer needs.
 
-The methodology doesn't provide clear guidance on how to balance these competing demands. Do you reserve capacity within cycles for urgent work? Do you pull people out of cycles when needed? Do you maintain separate teams? Each approach has trade-offs that Shape Up doesn't adequately address.
+Shape Up doesn't provide clear guidance on how to balance these competing demands. Do you reserve capacity within cycles for urgent work? Do you pull people out of cycles when needed? Do you maintain separate teams? Each approach has trade-offs that Shape Up doesn't adequately address.
 
 ## Final Thoughts
 

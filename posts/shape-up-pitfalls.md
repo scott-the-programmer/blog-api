@@ -35,13 +35,13 @@ Conversely, if support staff have a strong voice at the betting table, you might
 
 Deadlines are great! Oh wait... you said due tomorrow?
 
-Our last pitfall is that **items with deadlines or non-negotiable work don't fit the methodology.** Incidents need immediate attention. Critical bugs can't wait for the next betting cycle. Urgent customer requests often have immovable deadlines tied to business commitments. 
+Our last pitfall is that **items with deadlines or non-negotiable work don't fit the methodology.** Incidents need immediate attention. Critical bugs can't wait for the next betting cycle. Urgent customer requests often have immovable deadlines tied to business commitments.
 
 Bug X with appetite Y that needs to be done before Z (where Z is in a few days/weeks) doesn't really make sense in the context of Shape Up. Sure, this type of work exists, and must be worked on, but would a consumed appetite really change anything? If it wouldn't, then it is simply unbounded work with high priority that will risk the teams delivery... and that's OK!
 
 ## Final Thoughts
 
-Honestly, as much as I love providing answers, I don't have a definitive answer—or perhaps there really isn't one. It's just a list of compromises you're willing to make compared to whatever other software development methodology you're considering.
+Honestly, as much as I love providing answers, I don't have a definitive answer. Perhaps there really isn't one. It's just a list of compromises you're willing to make compared to whatever other software development methodology you're considering.
 
 I do have _some_ fleeting thoughts that may be beneficial for anyone interested in Shape Up:
 

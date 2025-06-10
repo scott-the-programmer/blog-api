@@ -21,25 +21,23 @@ This is not a failure of the engineers — it's an expected outcome of the metho
 
 Shape Up's betting approach requires a fundamental shift in how we think about commitments. **Every item in a cycle must be halt-able without catastrophic consequences.** This means that if an appetite is exceeded, you must be prepared to stop work, re-evaluate the complexity, and potentially re-bet with new knowledge.
 
-The discipline required to halt work and re-bet is often underestimated. It requires strong leadership support, a culture that views stopping as a sign of good judgment rather than failure, and crucially, **the freedom to fail**. Teams need to be comfortable with the idea that sometimes the best decision is to step back and reshape the problem—or even abandon it entirely if the complexity doesn't justify the value. This freedom to fail is essential for Shape Up to work, but it's often the hardest cultural shift for organizations to embrace.
+The discipline required to halt work and re-bet is often underestimated. It requires strong leadership support, a culture that views stopping as a sign of good judgment rather than failure, and crucially, **the freedom to fail**. Teams need to be comfortable with the idea that sometimes the best decision is to step back and reshape the problem—or even abandon it entirely if the complexity doesn't justify the value. This freedom to fail is essential for Shape Up to work.
 
 ## The Betting Table Bias
 
-Another overlooked pitfall of Shape Up is how **the composition of your betting table indirectly drives product direction**. The methodology emphasizes the importance of having the right people at the betting table, but it doesn't adequately address how different perspectives can create systematic biases in what gets prioritized.
+Another overlooked pitfall of Shape Up is how **the composition of your betting table indirectly drives product direction**. Shape Up emphasizes the importance of having the right people at the betting table, but it doesn't adequately address how different perspectives can create systematic biases in what gets prioritized.
 
-If your betting meetings are dominated by marketing stakeholders, you'll inevitably end up with a highly marketable product that sounds amazing in demos but may have terrible user experience. Marketing-driven bets tend to prioritize features that look impressive in screenshots and sales presentations, but don't necessarily solve real user problems effectively.
+If your betting meetings are dominated by marketing stakeholders, you'll inevitably end up with a highly marketable product that sounds amazing in demos but may have terrible user experience.
 
-Conversely, if support staff have a strong voice at the betting table, you might find yourself constantly prioritizing customer-specific fixes that address individual complaints but don't solve larger, systemic problems. Each bet feels justified—after all, you're helping customers—but you're essentially playing whack-a-mole instead of addressing root causes.
-
-The same bias applies to other stakeholders: sales teams will push for features that help close deals, engineers might over-prioritize technical debt, and executives could favor high-visibility projects that look good in board presentations. **The betting table becomes a microcosm of organizational politics**, and whatever voice is loudest or most persuasive will shape your product roadmap.
-
-There isn't a right or wrong answer when it comes to how to organize a betting table, but the best approach is to be aware of the bias.
+Conversely, if support staff have a strong voice at the betting table, you might find yourself constantly prioritizing customer-specific fixes that address individual complaints but don't solve larger, systemic problems. Each bet feels justified. After all, you're helping customers, but you're essentially playing whack-a-mole instead of addressing root causes.
 
 ## The Deadline Dilemma
 
 Deadlines are great! Oh wait... you said due tomorrow?
 
-Shape Up is that **items with deadlines or non-negotiable work don't fit the methodology.** Incidents need immediate attention. Critical bugs can't wait for the next betting cycle. Urgent customer requests often have immovable deadlines tied to business commitments.
+Our last pitfall is that **items with deadlines or non-negotiable work don't fit the methodology.** Incidents need immediate attention. Critical bugs can't wait for the next betting cycle. Urgent customer requests often have immovable deadlines tied to business commitments. 
+
+Bug X with appetite Y that needs to be done before Z (where Z is in a few days/weeks) doesn't really make sense in the context of Shape Up. Sure, this type of work exists, and must be worked on, but would a consumed appetite really change anything? If it wouldn't, then it is simply unbounded work with high priority that will risk the teams delivery... and that's OK!
 
 ## Final Thoughts
 

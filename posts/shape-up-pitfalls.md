@@ -2,7 +2,7 @@
 title: "Shape Up: The Pitfalls They Don't Talk About"
 date: "2025-06-11"
 tags: ["product", "people", "organization"]
-excerpt: "Shape Up is a compelling product development methodology, but it comes with hidden challenges that teams need to understand before adopting it."
+excerpt: "Being in shape is great! Shaping Up in a work environment however? Could be a good idea but sometimes it may be bad. Don't blink as you read this thrilling, seat clenching, post on the pitfalls of Shape Up"
 ---
 
 First and foremost, I am not downplaying [Shape Up](https://basecamp.com/shapeup) and its importance to IT professionals, nor am I recommending against it. This is simply 1:13am blabber about a few thoughts that I have that I think are under-emphasized, or perhaps brushed under the rug. So anyway, here is my

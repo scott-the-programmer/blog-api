@@ -25,7 +25,7 @@ The discipline required to halt work and re-bet is often underestimated. It requ
 
 ## The Betting Table Bias
 
-One of the most overlooked pitfalls of Shape Up is how **the composition of your betting table indirectly drives product direction**. The methodology emphasizes the importance of having the right people at the betting table, but it doesn't adequately address how different perspectives can create systematic biases in what gets prioritized.
+Another overlooked pitfall of Shape Up is how **the composition of your betting table indirectly drives product direction**. The methodology emphasizes the importance of having the right people at the betting table, but it doesn't adequately address how different perspectives can create systematic biases in what gets prioritized.
 
 If your betting meetings are dominated by marketing stakeholders, you'll inevitably end up with a highly marketable product that sounds amazing in demos but may have terrible user experience. Marketing-driven bets tend to prioritize features that look impressive in screenshots and sales presentations, but don't necessarily solve real user problems effectively.
 
@@ -37,11 +37,9 @@ There isn't a right or wrong answer when it comes to how to organize a betting t
 
 ## The Deadline Dilemma
 
-Perhaps the most significant limitation of Shape Up is that **items with deadlines or non-negotiable work don't fit the methodology.** Incidents need immediate attention. Critical bugs can't wait for the next betting cycle. Urgent customer requests often have immovable deadlines tied to business commitments.
+Deadlines are great! Oh wait... you said due tomorrow?
 
-This creates a challenging reality: some engineers may not fit into the cycle flow. You might need dedicated teams or individuals to handle these interruptions, which can create a two-tier system within your engineering organization. The engineers handling urgent work might feel excluded from the more strategic, shaped work, while the cycle teams might feel disconnected from immediate customer needs.
-
-Shape Up doesn't provide clear guidance on how to balance these competing demands. Do you reserve capacity within cycles for urgent work? Do you pull people out of cycles when needed? Do you maintain separate teams? Each approach has trade-offs that Shape Up doesn't adequately address.
+Shape Up is that **items with deadlines or non-negotiable work don't fit the methodology.** Incidents need immediate attention. Critical bugs can't wait for the next betting cycle. Urgent customer requests often have immovable deadlines tied to business commitments.
 
 ## Final Thoughts
 
@@ -49,8 +47,8 @@ Honestly, as much as I love providing answers, I don't have a definitive answerâ
 
 I do have _some_ fleeting thoughts that may be beneficial for anyone interested in Shape Up:
 
-- **Let Senior Engineers drive cool-down work.** This will decrease the potential wastage in efforts that don't have any legs to begin with. Yes, CQRS might work well but currently our `/do/the/thing` endpoint has slowed by 50% for no apparent reason!
-- **Set expectations of quality.** ~~Engineers~~ People, often have the best intentions in mind. Juggling quality, speed, and delivery is complex. Engineers have to feel OK with cutting corners at times, knowing that it will be paid back at some point. Conversely, some definition of quality must be set. The default mindset should be "in X language/framework/library, it is recommended to do it X way." Unless there truly is a constraint on quality, cutting corners should be a last resort.
+- **Let Senior Engineers drive cool-down work.** This will decrease the potential wastage in efforts that don't have any legs to begin with. Yes, CQRS might work well but currently our `/do/the/thing` endpoint has slowed down by 50% for no apparent reason!
+- **Set expectations of quality.** ~~Engineers~~ People, often have the best intentions in mind. Juggling quality, speed, and delivery is complex. Engineers have to feel OK with cutting corners at times, knowing that it will be paid back at some point. Conversely, some definition of quality must be set. The default mindset should be "in X language/framework/library, it is recommended to do it Y way." Unless there truly is a constraint on quality, cutting corners should be a last resort.
 - **Testing must be included in the appetite.** However this may manifest in your team structure, if the feature is complete just at the cusp of consuming the appetite, then it is simply not done and should likely be halted. It should be OK to say "we've paused this as too many unforeseen issues cropped up."
 - **Your developer and testing workflow should be unified.** I don't have an answer on how to do this, but appetite fundamentally does not work if these two components aren't in unison. If your org only has Software Engineers and you validate through metrics and canaries, then this should be seamless. Alternatively, if you have a traditional Software Engineer/QA Engineer setup, then the interaction should not be disruptive.
 

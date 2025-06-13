@@ -69,14 +69,9 @@ func (f *RSSFeed) ToXML() string {
 func BlogPostToRSSItem(post BlogPost, baseURL string) RSSItem {
 	link := fmt.Sprintf("%s/posts/%s", strings.TrimRight(baseURL, "/"), post.Slug)
 
-	// Use excerpt if available, otherwise truncate content
-	description := post.Excerpt
-	if description == "" && post.Content != "" {
-		if len(post.Content) > 200 {
-			description = post.Content[:200] + "..."
-		} else {
-			description = post.Content
-		}
+	description := post.Content
+	if description == "" {
+		description = post.Excerpt
 	}
 
 	return RSSItem{
